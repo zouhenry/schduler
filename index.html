@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="scheduler">
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.7/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+
+<body ng-controller="Scheduler as scheduler">
+
+<div>all Techs: {{scheduler.techs.join(', ')}}</div>
+<div>all Docs: {{scheduler.doctors.join(', ')}}</div>
+
+<td ng-repeat='tech in scheduler.techs'>{{tech}}</td>
+<br/>
+<table>
+  <tr>
+    <th ng-repeat='doctor in scheduler.doctors'>{{doctor}}</th>
+  </tr>
+  <tr ng-repeat="pastSchedule in scheduler.schedules">
+    <td ng-repeat='doctor in scheduler.doctors'>{{pastSchedule[doctor]}}
+    </th>
+  </tr>
+  <tr>
+    <td ng-repeat='doctor in scheduler.doctors'>
+      <select ng-options="tech for tech in scheduler.techs" ng-model="scheduler.newSchedule[doctor]"></select>
+    </td>
+    <td>
+      <button ng-click="scheduler.addSchedule()">Add Schdule</button>
+  </tr>
+</table>
+<script src="scheduler.js"></script>
+</body>
+
+</html>
